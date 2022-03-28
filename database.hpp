@@ -16,16 +16,16 @@ namespace
     typedef struct Database database;
     bool einfuegen(database *db, kfz::kennzeichen *schild) // insert
     {
-        database *newDatabase;
+        db = new database;
         for (int i = 0; i < DB_LIMIT; i++) // set 0
         {
-            newDatabase->schilder[i] = 0;
+            db->schilder[i] = 0;
         }
         for (int i = 0; i < DB_LIMIT; i++)
         {
-            if (newDatabase->schilder[i] == 0)
+            if (db->schilder[i] == 0)
             {
-                newDatabase->schilder[i] = schild;
+                db->schilder[i] = schild;
                 return true;
             }
             else
