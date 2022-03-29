@@ -31,7 +31,7 @@ namespace kfz
         std::string input;
         while(true) //runs for eternity
         {
-            std::cout << "Enter location, : " << std::endl;
+            std::cout << "Enter location: " << std::endl;
             std::cin >> input;
 
             if (!containsOnlyCapitalLetter(input))
@@ -57,7 +57,7 @@ namespace kfz
         std::string input;
         while(true) //runs for eternity
         {
-            std::cout << "Enter alphabet(s), : " << std::endl;
+            std::cout << "Enter alphabet(s): " << std::endl;
             std::cin >> input;
 
             if (!containsOnlyCapitalLetter(input))
@@ -152,22 +152,22 @@ namespace kfz
     }
     void schildTest(kennzeichen *schild)
     {
-        if(istZehner(schild))
+        if (istZehner(schild))
         {
             std::cout << "you have a Zehner! Great choice!" << std::endl;
         }
-        else if(istHunderter(*schild))
+        else if (istHunderter(*schild))
         {
             std::cout << "you have a Hunderter! Very noice!" << std::endl;
         }
-        istTausender(schild);
+        else if (istTausender(schild))
         {
-            std::cout << "wow you have a Tausender! UWU  " << std::endl
+            std::cout << "wow you have a Tausender! UWU  " << std::endl;
         }
 
     }
     std::string ausgabe(const kennzeichen &rKennzeichen)
     {
-        return rKennzeichen.ort + rKennzeichen.buchstaben + std::to_string(rKennzeichen.zahl);
+        return rKennzeichen.ort + "-" + rKennzeichen.buchstaben + "-" + std::to_string(rKennzeichen.zahl);
     }
 }

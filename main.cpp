@@ -32,14 +32,25 @@ void einlesenTest()
 
 void databaseTest()
 {
+    std::string location;
+    std::cin >> location;
+    db::Database db;
+    db.nameOfLocation = location;
+    bool insertSuccessful;
+
+    db::einfuegen(&(db), kfz::einlesen());
+    db::einfuegen(&(db), kfz::einlesen());
+
+    std::cout << db::ausgabe(db) << std::endl;
+
 }
 
 int main()
 {
-    //schnapszahlTest();
-    einlesenTest();
 
-    //kfz::testSchnapsZahl();
-    
+    //einlesenTest();
+
+    databaseTest();
+
     return 0;
 }

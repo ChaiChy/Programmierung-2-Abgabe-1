@@ -4,11 +4,11 @@
 #include <string>
 #include <sstream>
 
-namespace
+namespace db
 {
     struct Database
     {
-        std::string name;
+        std::string nameOfLocation;
         kfz::kennzeichen *schilder[DB_LIMIT]; // schilder = carplate
         int eintraege = 0;                    // entries
     };
@@ -16,25 +16,25 @@ namespace
     typedef struct Database database;
     bool einfuegen(database *db, kfz::kennzeichen *schild) // insert
     {
-        db = new database;
-        for (int i = 0; i < DB_LIMIT; i++) // set 0
-        {
-            db->schilder[i] = 0;
-        }
+        
         for (int i = 0; i < DB_LIMIT; i++)
         {
-            if (db->schilder[i] == 0)
+            if (db->schilder[i] == NULL)
             {
                 db->schilder[i] = schild;
                 return true;
             }
-            else
-            {
-                return false;
-            }
         }
+        return false;
     }
     std::string ausgabe(const database &db)
     {
+        std::string newLine = "\n\n";
+        std::string carplates;
+        for (int i = 0; i < DB_LIMIT; i++)
+        {
+            carplates += kfz::ausgabe(*(db.schilder[i])) + newLine;
+        }
+        return "Database: " + db.nameOfLocation + newLine + "-------------" + newLine + carplates;
     }
 }
