@@ -36,6 +36,9 @@ void databaseTest()
     std::cout << "enter DB location: ";
     std::cin >> location;
     db::Database db;
+    for(int i = 0; i < DB_LIMIT; i++){
+        db.schilder[i] = NULL;
+    }
     db.nameOfLocation = location;
     bool insertSuccessful;
 
