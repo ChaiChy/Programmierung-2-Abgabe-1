@@ -33,6 +33,9 @@ namespace db
         std::string carplates;
         for (int i = 0; i < DB_LIMIT; i++)
         {
+            if(db.schilder[i] == NULL){
+                continue;
+            }
             carplates += kfz::ausgabe(*(db.schilder[i])) + newLine;
         }
         return "Database: " + db.nameOfLocation + newLine + "-------------" + newLine + carplates;
