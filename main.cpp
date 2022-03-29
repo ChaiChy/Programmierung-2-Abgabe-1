@@ -33,6 +33,7 @@ void einlesenTest()
 void databaseTest()
 {
     std::string location;
+    std::cout << "enter DB location: ";
     std::cin >> location;
     db::Database db;
     db.nameOfLocation = location;
