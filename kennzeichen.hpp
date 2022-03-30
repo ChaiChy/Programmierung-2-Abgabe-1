@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
 #include <iostream>
-#include <sstream>
 #include <cassert>
+#include <cstring>
 /* IHR CODE */
 namespace kfz
 {
@@ -28,8 +28,8 @@ namespace kfz
     }
     std::string einlesenOrt() // readLocation
     {
-        std::string input;
-        while(true) //runs for eternity
+        char input[10];
+        while (true) // runs for eternity
         {
             std::cout << "Enter location: " << std::endl;
             std::cin >> input;
@@ -38,7 +38,7 @@ namespace kfz
             {
                 std::cout << "Only capital letters!" << std::endl;
             }
-            else if(input.length() <= 0 || input.length() > 3)
+            else if (strlen(input) <= 0 || strlen(input) > 3)
             {
                 std::cout << "Number of letters must be between 1 to 3!" << std::endl;
             }
@@ -46,16 +46,16 @@ namespace kfz
             {
                 return input;
             }
-            
-            std::cin.clear();
-            std::cin.ignore();
+
+            std::cin.clear();  // clear error flag
+            std::cin.ignore(); // clear input buffer
         };
     }
 
     std::string einlesenBuchstaben()
     {
         std::string input;
-        while(true) //runs for eternity
+        while (true) // runs for eternity
         {
             std::cout << "Enter alphabet(s): " << std::endl;
             std::cin >> input;
@@ -64,7 +64,7 @@ namespace kfz
             {
                 std::cout << "Only capital letters!" << std::endl;
             }
-            else if(input.length() <= 0 || input.length() > 2)
+            else if (input.length() <= 0 || input.length() > 2)
             {
                 std::cout << "Number of letters must be between 1 to 2!" << std::endl;
             }
@@ -72,7 +72,7 @@ namespace kfz
             {
                 return input;
             }
-            
+
             std::cin.clear();
             std::cin.ignore();
         };
@@ -108,18 +108,18 @@ namespace kfz
     {
         std::string temp;
         temp = std::to_string(pKennzeichen->zahl);
-        if(temp.length() <= 1)
+        if (temp.length() <= 1)
         {
             return false;
         }
-        for (int i = 1; i < temp.length(); i++) 
+        for (int i = 1; i < temp.length(); i++)
         {
-            if(temp[i - 1] != temp[i])
-            return false;
+            if (temp[i - 1] != temp[i])
+                return false;
         }
         return true;
     }
-    void testSchnapsZahl() //regression test/ unit test
+    void testSchnapsZahl() // regression test/ unit test
     {
         kennzeichen kenn;
         kenn.zahl = 0;
@@ -164,7 +164,10 @@ namespace kfz
         {
             std::cout << "wow you have a Tausender! UWU  " << std::endl;
         }
-
+        else if (istSchnapszahl(schild))
+        {
+            std::cout << "Your carplate has a Schnapzahl!! " << std::endl;
+        }
     }
     std::string ausgabe(const kennzeichen &rKennzeichen)
     {

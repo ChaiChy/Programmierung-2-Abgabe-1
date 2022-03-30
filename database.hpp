@@ -38,6 +38,6 @@ namespace db
             }
             carplates += kfz::ausgabe(*(db.schilder[i])) + newLine;
         }
-        return "Database: " + db.nameOfLocation + newLine + "-------------" + newLine + carplates;
+        return "Database: " + db.nameOfLocation + "\n" + "-------------------" + newLine + carplates;
     }
 }

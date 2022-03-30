@@ -6,15 +6,19 @@
 void schnapszahlTest()
 {
     bool status;
-    kfz::kennzeichen *carPlate = kfz::einlesen();
-    status = kfz::istSchnapszahl(carPlate);
-    std::string ort = carPlate->ort;
-    std::string buchstaben = carPlate->buchstaben;
-    short zahl = carPlate->zahl;
+    kfz::kennzeichen carPlate; //generating instance of kennzeichen on stack
+    carPlate.ort = kfz::einlesenOrt();
+    carPlate.buchstaben = kfz::einlesenBuchstaben();
+    carPlate.zahl = kfz::einlesenZahl();
+
+    status = kfz::istSchnapszahl(&carPlate);
+    std::string ort = carPlate.ort;
+    std::string buchstaben = carPlate.buchstaben;
+    short zahl = carPlate.zahl;
 
     if (status)
     {
-        std::cout << "Your carplate: " << ort << "-" << buchstaben << "-" << zahl << " ,"
+        std::cout << "Your carplate: " << ort << "-" << buchstaben << "-" << zahl << ", "
                   << "has Schnapszahl!" << std::endl;
     }
     else
@@ -35,12 +39,12 @@ void databaseTest()
     std::string location;
     std::cout << "enter DB location: ";
     std::cin >> location;
-    db::Database db;
+    db::Database db; // creating instance of Database on stack
     for(int i = 0; i < DB_LIMIT; i++){
         db.schilder[i] = NULL;
     }
     db.nameOfLocation = location;
-    bool insertSuccessful;
+    //bool insertSuccessful;
 
     db::einfuegen(&(db), kfz::einlesen());
     db::einfuegen(&(db), kfz::einlesen());
@@ -51,10 +55,11 @@ void databaseTest()
 
 int main()
 {
+    schnapszahlTest();
 
     //einlesenTest();
 
-    databaseTest();
+    //databaseTest();
 
     return 0;
 }
