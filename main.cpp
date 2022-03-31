@@ -40,8 +40,9 @@ void databaseTest()
     std::cout << "enter DB location: ";
     std::cin >> location;
     db::Database db; // creating instance of Database on stack
-    for(int i = 0; i < DB_LIMIT; i++){
-        db.schilder[i] = NULL;
+    for(int i = 0; i < DB_LIMIT; i++)
+    {
+        db.schilder[i] = NULL;  //set 0
     }
     db.nameOfLocation = location;
     //bool insertSuccessful;
@@ -55,9 +56,9 @@ void databaseTest()
 
 int main()
 {
-    schnapszahlTest();
+    //schnapszahlTest();
 
-    //einlesenTest();
+    einlesenTest();
 
     //databaseTest();
 

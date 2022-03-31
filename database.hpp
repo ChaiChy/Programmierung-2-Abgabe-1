@@ -33,7 +33,8 @@ namespace db
         std::string carplates;
         for (int i = 0; i < DB_LIMIT; i++)
         {
-            if(db.schilder[i] == NULL){
+            if(db.schilder[i] == NULL) // skips iteration when there's no more carplates
+            {
                 continue;
             }
             carplates += kfz::ausgabe(*(db.schilder[i])) + newLine;
